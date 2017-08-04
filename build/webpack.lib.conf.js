@@ -14,7 +14,7 @@ var env = process.env.NODE_ENV === 'testing'
   : config.lib.env
 
 baseWebpackConfig.entry = {
-  'vue-address': './src/index.js'
+  'vue-address': './src/lib.js'
 }
 
 var webpackConfig = merge(baseWebpackConfig, {

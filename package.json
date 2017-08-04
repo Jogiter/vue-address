@@ -4,9 +4,7 @@
   "description": "vue-address",
   "author": "Jogiter <jogiter.g@gmail.com>",
   "main": "lib/vue-select.min.js",
-  "private": true,
   "scripts": {
-    "prepublish": "npm run build",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
