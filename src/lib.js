@@ -1,2 +1,2 @@
 import * as vueAddress from './components/address.vue'
-export { vueAddress }
+export default vueAddress

@@ -1,9 +1,9 @@
 {
   "name": "vue-address",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "vue-address",
   "author": "Jogiter <jogiter.g@gmail.com>",
-  "main": "lib/vue-select.min.js",
+  "main": "lib/vue-address.min.js",
   "private": false,
   "scripts": {
     "dev": "node build/dev-server.js",
