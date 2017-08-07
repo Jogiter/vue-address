@@ -118,6 +118,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#select-address {
+  display: block;
+}
+#select-address .stf-select {
+  width: 200px;
+  display: inline-block;
+}
 </style>
