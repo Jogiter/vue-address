@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import xAddress from './components/address'
+import xAddress from './components/address.vue'
 
 export default {
     name: 'app',
