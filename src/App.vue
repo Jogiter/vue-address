@@ -3,7 +3,7 @@
         <x-address @change="selectAddress"></x-address>
         <div id="address" v-text="selectedAddress"></div>
         <button @click="showpop">showpop</button>
-        <div class="mask" @click="hidepop" v-show="popstatus">
+        <div class="mask" v-show="popstatus">
             <div class="popup">
                 <h2>hell popup</h2>
                 <x-address @change="selectAddress"></x-address>
@@ -28,8 +28,8 @@
             }
         },
         methods: {
-            selectAddress (province, city, detail) {
-                this.selectedAddress = `${province}, ${city}, ${detail}`
+            selectAddress (address) {
+                this.selectedAddress = address
             },
             showpop () {
                 this.popstatus = true
@@ -46,7 +46,6 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
         margin-top: 60px;
     }
@@ -72,6 +71,14 @@
         min-height: 200px;
         background-color: #fff;
         border-radius: 10px;
+        padding: 15px;
+    }
+    @media screen and (max-width: 768px) {
+        .popup {
+            padding: 5px;
+            min-width: 90%;
+            min-height: 200px;
+        }
     }
     .popup h2 {
         margin-top: 50px;

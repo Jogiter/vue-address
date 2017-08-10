@@ -1,46 +1,20 @@
 <template>
     <div id="select-address">
-        <stf-select v-model="province" @input="onchange">
-            <div slot="label">省份</div>
-            <div slot="value">
-                <div v-if="province">
-                    <span>{{province}}</span>
-                </div>
-            </div>
-            <section class="options">
-                <stf-select-option v-for="(item, index) in provinces" :key="index" :value="item" :class="{'stf-select-option_selected': item == province}">
-                    <span>{{item}}</span>
-                </stf-select-option>
-            </section>
-        </stf-select>
-
-        <stf-select v-model="city" v-show="showCity" @input="onchange">
-            <div slot="label">城市</div>
-            <div slot="value">
-                <div v-if="city">
-                    <span>{{city}}</span>
-                </div>
-            </div>
-            <section class="options">
-                <stf-select-option v-for="(item, index) in citys" :key="index" :value="item" :class="{'stf-select-option_selected': item == city}">
-                    <span>{{item}}</span>
-                </stf-select-option>
-            </section>
-        </stf-select>
-
-        <stf-select v-model="detail" v-show="showDetail" @input="onchange">
-            <div slot="label">区县</div>
-            <div slot="value">
-                <div v-if="detail">
-                    <span>{{detail}}</span>
-                </div>
-            </div>
-            <section class="options">
-                <stf-select-option v-for="(item, index) in details" :key="index" :value="item" :class="{'stf-select-option_selected': item == detail}">
-                    <span>{{item}}</span>
-                </stf-select-option>
-            </section>
-        </stf-select>
+        <select v-model="province" @change="onchange">
+            <option v-for="(item, index) in provinces" :key="index" :value="item">
+                <span>{{item}}</span>
+            </option>
+        </select>
+        <select v-model="city" v-show="showCity" @change="onchange">
+            <option v-for="(item, index) in citys" :key="index" :value="item">
+                <span>{{item}}</span>
+            </option>
+        </select>
+        <select v-model="detail" v-show="showDetail" @change="onchange">
+            <option v-for="(item, index) in details" :key="index" :value="item">
+                <span>{{item}}</span>
+            </option>
+        </select>
     </div>
 </template>
 
@@ -79,7 +53,9 @@ export default {
                     this.detail = null
                 } else {
                     this.showCity = true
-                    this.city = citys[0]
+                    this.$nextTick(() => {
+                        this.city = citys[0]
+                    })
                 }
                 return citys
             }
@@ -91,8 +67,10 @@ export default {
                     this.showDetail = false
                     this.detail = null
                 } else {
-                    this.showDetail = true
-                    this.detail = details[0]
+                    this.$nextTick(() => {
+                        this.showDetail = true
+                        this.detail = details[0]
+                    })
                 }
                 return details
             }
@@ -100,9 +78,9 @@ export default {
     },
     data: () => {
         return {
-            province: null,
-            city: null,
-            detail: null,
+            province: '',
+            city: '',
+            detail: '',
             showCity: true, // show select or not
             showDetail: true, // show select or not
             provinces: Object.keys(addressData)
@@ -111,9 +89,22 @@ export default {
     methods: {
         onchange () {
             this.$nextTick(() => {
-                this.$emit('change', this.province, this.city, this.detail)
+                if (specAddress.indexOf(this.province) > -1) {
+                    this.$emit('change', this.province)
+                } else {
+                    this.$emit('change', `${this.province}${this.city}${this.detail}`)
+                }
             })
         }
+    },
+    created () {
+    },
+    mounted () {
+        this.province = '北京市'
+        this.$nextTick(() => {
+            this.city = '市辖区'
+            this.detail = '东城区'
+        })
     }
 }
 </script>
@@ -122,8 +113,14 @@ export default {
 #select-address {
   display: block;
 }
-#select-address .stf-select {
-  width: 200px;
+#select-address select {
+  width: 100px;
   display: inline-block;
+  height: 30px;
+  line-height: 30;
+  border-radius: 3px;
+}
+#select-address select option {
+    font-size: 15px;
 }
 </style>
