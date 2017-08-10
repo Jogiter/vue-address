@@ -1,6 +1,6 @@
 {
   "name": "vue-address",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "vue-address",
   "author": "Jogiter <jogiter.g@gmail.com>",
   "main": "lib/vue-address.min.js",
