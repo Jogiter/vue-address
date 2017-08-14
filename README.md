@@ -2,7 +2,6 @@
 
 > 多级联动地址选择器
 
-依赖[stf-vue-select](https://github.com/stfalcon-studio/stf-vue-select)
 
 ## install
 
@@ -59,23 +58,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-/*覆盖样式*/
-.stf-select {
-    display: inline-block;
-    min-width: 120px;
-    text-align: left;
-    padding-left: 10px;
-}
-.stf-select,
-.stf-select__inner-wrapper {
-    background-color: #ff9967;
-    color: #fff;
-}
 </style>
 ```
 
 ## 特别感谢
 
 +   [Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China) 中国行政区划数据：省份、城市、区县、乡镇，省市区镇三级四级联动。
-+   [stf-vue-select](https://github.com/stfalcon-studio/stf-vue-select) stf vue select - most flexible and customized select
 +   [vue-address](https://github.com/WebCodeFarmer/vue-address) 多级联动地址选择器
