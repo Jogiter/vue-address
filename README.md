@@ -53,13 +53,11 @@ export default {
 </script>
 
 <style>
-
 </style>
 ```
 
 特别感谢
 --------
 
--	[Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China) 中国行政区划数据：省份、城市、区县、乡镇，省市区镇三级四级联动。
--	[stf-vue-select](https://github.com/stfalcon-studio/stf-vue-select) stf vue select - most flexible and customized select
--	[vue-address](https://github.com/WebCodeFarmer/vue-address) 多级联动地址选择器
++   [Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China) 中国行政区划数据：省份、城市、区县、乡镇，省市区镇三级四级联动。
++   [vue-address](https://github.com/WebCodeFarmer/vue-address) 多级联动地址选择器
