@@ -1,5 +1,5 @@
 <template>
-    <div id="select-address">
+    <div name="select-address">
         <select v-model="province" @change="onchange">
             <option v-for="(item, index) in provinces" :key="index" :value="item">
                 <span>{{item}}</span>
@@ -19,18 +19,12 @@
 </template>
 
 <script>
-import 'stf-vue-select/dist/lib/stf-vue-select.min.css'
-import {StfSelect, StfSelectOption} from 'stf-vue-select'
 import addressData from '../lib/address3.json'
 
 const specAddress = ['台湾省', '香港特别行政区', '澳门特别行政区']
 
 export default {
     name: 'vueAddress',
-    components: {
-        StfSelect,
-        StfSelectOption
-    },
     watch: {
         province () {
             if (specAddress.indexOf(this.province) > -1) {
@@ -110,17 +104,17 @@ export default {
 </script>
 
 <style scoped>
-#select-address {
+[name="select-address"] {
   display: block;
 }
-#select-address select {
+[name="select-address"] select {
   width: 100px;
   display: inline-block;
   height: 30px;
   line-height: 30;
   border-radius: 3px;
 }
-#select-address select option {
+[name="select-address"] select option {
     font-size: 15px;
 }
 </style>
