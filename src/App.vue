@@ -1,12 +1,12 @@
 <template>
     <div id="app">
-        <x-address @change="selectAddress"></x-address>
+        <x-address @on-change="selectAddress" :p="province" :c="city" :a="area"></x-address>
         <div id="address" v-text="selectedAddress"></div>
         <button @click="showpop">showpop</button>
         <div class="mask" v-show="popstatus">
             <div class="popup">
                 <h2>hell popup</h2>
-                <x-address @change="selectAddress"></x-address>
+                <x-address @on-change="selectAddress"></x-address>
                 <div class="btns"><button @click="hidepop">cancel</button><button @click="hidepop">ensure</button></div>
             </div>
         </div>
@@ -23,13 +23,17 @@
         },
         data: () => {
             return {
+                province: '广东省',
+                city: '深圳市',
+                area: '南山区',
                 selectedAddress: '',
                 popstatus: false
             }
         },
         methods: {
             selectAddress (address) {
-                this.selectedAddress = `${address.province}${address.city}${address.detail}`
+                console.log(`${address.province}${address.city}${address.area}`)
+                this.selectedAddress = `${address.province}${address.city}${address.area}`
             },
             showpop () {
                 this.popstatus = true
@@ -98,16 +102,18 @@
         background-color: #ff9967;
         color: #fff;
     }
-    /*覆盖样式*/
-    .stf-select {
-        display: inline-block;
-        min-width: 120px;
-        text-align: left;
-        padding-left: 10px;
+    /*demo 样式*/
+    [name="select-address"] {
+      display: block;
     }
-    .stf-select,
-    .stf-select__inner-wrapper {
-        background-color: #ff9967;
-        color: #fff;
+    [name="select-address"] select {
+      width: 100px;
+      display: inline-block;
+      height: 30px;
+      line-height: 30;
+      border-radius: 3px;
+    }
+    [name="select-address"] select option {
+        font-size: 15px;
     }
 </style>

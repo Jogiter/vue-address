@@ -1,17 +1,17 @@
 <template>
     <div name="select-address">
-        <select v-model="province" @change="onchange">
+        <select v-model="province" @change="select('province')">
             <option v-for="(item, index) in provinces" :key="index" :value="item">
                 <span>{{item}}</span>
             </option>
         </select>
-        <select v-model="city" v-show="showCity" @change="onchange">
+        <select v-model="city" v-show="showCity" @change="select('city')">
             <option v-for="(item, index) in citys" :key="index" :value="item">
                 <span>{{item}}</span>
             </option>
         </select>
-        <select v-model="detail" v-show="showDetail" @change="onchange">
-            <option v-for="(item, index) in details" :key="index" :value="item">
+        <select v-model="area" v-show="showArea" @change="select('area')">
+            <option v-for="(item, index) of areas" :key="index" :value="item">
                 <span>{{item}}</span>
             </option>
         </select>
@@ -25,94 +25,73 @@ const specAddress = ['台湾省', '香港特别行政区', '澳门特别行政�
 
 export default {
     name: 'vueAddress',
-    watch: {
-        province () {
-            if (specAddress.indexOf(this.province) > -1) {
-                this.showCity = false
-                this.showDetail = false
-            }
-            this.city = this.citys ? this.citys[0] : null
-            this.detail = this.details ? this.details[0] : null
-        }
-    },
-    computed: {
-        citys () {
-            if (this.province) {
-                let citys = Object.keys(addressData[this.province])
-                if (!citys.length) {
-                    this.showCity = false
-                    this.city = null
-
-                    this.showDetail = false
-                    this.detail = null
-                } else {
-                    this.showCity = true
-                    this.$nextTick(() => {
-                        this.city = citys[0]
-                    })
-                }
-                return citys
-            }
+    props: {
+        p: {
+            type: String,
+            default: ''
         },
-        details () {
-            if (this.city) {
-                let details = addressData[this.province][this.city]
-                if (!details.length) {
-                    this.showDetail = false
-                    this.detail = null
-                } else {
-                    this.$nextTick(() => {
-                        this.showDetail = true
-                        this.detail = details[0]
-                    })
-                }
-                return details
-            }
+        c: {
+            type: String,
+            default: ''
+        },
+        a: {
+            type: String,
+            default: ''
         }
     },
     data: () => {
         return {
-            province: '',
-            city: '',
-            detail: '',
             showCity: true, // show select or not
-            showDetail: true, // show select or not
-            provinces: Object.keys(addressData)
+            showArea: true, // show select or not
+            provinces: Object.keys(addressData),
+            citys: [],
+            areas: []
         }
     },
     methods: {
-        onchange () {
-            this.$nextTick(() => {
-                this.$emit('change', {
+        select (type) {
+            if (type === 'province') {
+                this.province = this.provinces.indexOf(this.province) > -1 ? this.province : this.provinces[0]
+                this._citys = addressData[this.province]
+                this.citys = Object.keys(this._citys)
+                this.city = this.citys.indexOf(this.city) > -1 ? this.city : this.citys[0]
+                if (specAddress.indexOf(this.province) > -1) {
+                    this.showCity = false
+                    this.showArea = false
+
+                    this.$emit('on-change', {
+                        province: this.province,
+                        city: '',
+                        area: ''
+                    })
+                } else {
+                    this.showCity = true
+                    this.showArea = true
+                    this.select('city')
+                }
+            }
+            if (type === 'city') {
+                this.areas = this._citys[this.city]
+                this.area = this.areas.indexOf(this.area) > -1 ? this.area : this.areas[0]
+                this.select('area')
+            }
+            if (type === 'area') {
+                this.$emit('on-change', {
                     province: this.province,
                     city: this.city,
-                    detail: this.detail
+                    area: this.area
                 })
-            })
+            }
         }
     },
     created () {
-        this.province = '北京市'
-        this.$nextTick(() => {
-            this.city = '市辖区'
-            this.detail = '东城区'
-        })
+        // set-default
+        this.province = this.p
+        this.city = this.c
+        this.area = this.a
+        this.select('province')
     }
 }
 </script>
 
-<style scoped>
-[name="select-address"] {
-  display: block;
-}
-[name="select-address"] select {
-  width: 100px;
-  display: inline-block;
-  height: 30px;
-  line-height: 30;
-  border-radius: 3px;
-}
-[name="select-address"] select option {
-    font-size: 15px;
-}
-</style>
+<style scoped></style>
