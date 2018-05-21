@@ -53,6 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         safe: true
       }
     }),
+    new webpack.optimize.UglifyJsPlugin()
   ]
 })
 

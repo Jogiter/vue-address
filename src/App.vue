@@ -29,7 +29,7 @@
         },
         methods: {
             selectAddress (address) {
-                this.selectedAddress = address
+                this.selectedAddress = `${address.province}${address.city}${address.detail}`
             },
             showpop () {
                 this.popstatus = true

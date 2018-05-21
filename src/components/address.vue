@@ -83,17 +83,15 @@ export default {
     methods: {
         onchange () {
             this.$nextTick(() => {
-                if (specAddress.indexOf(this.province) > -1) {
-                    this.$emit('change', this.province)
-                } else {
-                    this.$emit('change', `${this.province}${this.city}${this.detail}`)
-                }
+                this.$emit('change', {
+                    province: this.province,
+                    city: this.city,
+                    detail: this.detail
+                })
             })
         }
     },
     created () {
-    },
-    mounted () {
         this.province = '北京市'
         this.$nextTick(() => {
             this.city = '市辖区'
