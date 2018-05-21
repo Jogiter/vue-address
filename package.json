@@ -1,6 +1,6 @@
 {
   "name": "vue-address",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "vue-address",
   "author": "Jogiter <jogiter.g@gmail.com>",
   "main": "lib/vue-address.min.js",
@@ -106,7 +106,7 @@
     "component"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Jogiter/vue-address.git"
+    "type": "git",
+    "url": "https://github.com/Jogiter/vue-address.git"
   }
 }
