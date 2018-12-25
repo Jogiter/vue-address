@@ -13,10 +13,17 @@ import
 
 ```js
 import vueAddress from 'vue-address'
-import "vue-select/lib/vue-address.min.css";
 ...
 
+// 注册全局组件
 Vue.component('vue-address', vueAddress)
+
+// .vue 中使用
+export default {
+  components: {
+    vueAddress
+  }
+}
 ```
 
 usage
