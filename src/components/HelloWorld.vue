@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent } from '@vue/composition-api'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
