@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
-import { pca as addressData } from 'china-division'
+import { defineComponent, PropType, ref } from 'vue-demi'
+import addressData from 'china-division'
 
 const specAddress = ['台湾省', '香港特别行政区', '澳门特别行政区']
 
@@ -63,6 +63,7 @@ export default defineComponent({
       default: 'pca',
     },
   },
+  emits: ['on-change'],
   setup(props, { emit }) {
     // show select or not
     const showCity = ref(true)
