@@ -33,7 +33,7 @@ usage
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <x-address @change="selectAddress"></x-address>
+    <x-address @on-change="selectAddress"></x-address>
     <div id="address" v-text="selectedAddress"></div>
   </div>
 </template>
