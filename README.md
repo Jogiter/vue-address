@@ -33,7 +33,7 @@ usage
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <x-address @on-change="selectAddress"></x-address>
+    <x-address @on-change="selectAddress" :p="province" :c="city" :a="area"></x-address>
     <div id="address" v-text="selectedAddress"></div>
   </div>
 </template>
@@ -43,6 +43,9 @@ import xAddress from 'vue-address'
 
 export default {
   name: 'app',
+  province: '',
+  city: '',
+  area: '',
   components: {
     xAddress
   },
